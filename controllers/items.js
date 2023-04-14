@@ -4,7 +4,6 @@ const uuid = require('uuid')
 
 const createItem = async(req,res)=>{
     try {
-       await connectToDatabase()
         const body = req.body
         console.log("body",body)
         const data ={
@@ -21,7 +20,6 @@ const createItem = async(req,res)=>{
 
 const getById = async(req,res)=>{
     try {
-        await connectToDatabase()
         const  id = req.query.id
         if(!id){
             return res.status(400).json({message: "id is required",status:true})
@@ -35,7 +33,6 @@ const getById = async(req,res)=>{
 
 const getAllItem = async(req,res)=>{
     try {
-       await connectToDatabase()
         const response  = await itemModel.find()
         return res.status(200).json({"message": "success",status:true,data: response})
     } catch (error) {
@@ -45,7 +42,6 @@ const getAllItem = async(req,res)=>{
 
 const deleteItem = async(req,res)=>{
     try {
-      await  connectToDatabase()
         const id = req.query.id
         if(!id){
             return res.status(400).json({message: "id is required",status:true})
@@ -59,7 +55,6 @@ const deleteItem = async(req,res)=>{
 
 const updateItem = async (req, res) => {
     try {
-      await  connectToDatabase()
         const id = req.query.id
         const body = req.body
         if (!id) {
